@@ -1,0 +1,5 @@
+# Never upload API keys
+env.js
+.env
+# macOS junk files
+.DS_Store

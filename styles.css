@@ -1,0 +1,147 @@
+/* Make widths behave. Leave this line as it is. */
+* { box-sizing: border-box; }
+
+/* Your variables: change a color here, and the whole site follows */
+:root {
+  --brand: #800000;
+  --brand-dark: #5c0000; /* buttons when hovered or pressed */
+  --light: #f5f1ee;
+  --text: #222222;
+  --space: 1rem;
+  --accent: #800000;   /* headings, links, card frames (changes in dark mode) */
+  --page-bg: #ffffff;  /* the page background (changes in dark mode) */
+  --img-bg: #ffffff;   /* behind project pictures (stays white, the diagrams are drawn on white) */
+}
+
+/* Feature 1: dark mode. script.js adds class="dark" to the body.
+   These variables replace the ones above, so the whole site recolors at once. */
+body.dark {
+  --page-bg: #181818;
+  --light: #2a2a2a;
+  --text: #eeeeee;
+  --accent: #ff9c9c;
+}
+
+/* The voice: typography for the whole site */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--page-bg);
+}
+
+h1, h2, h3, a { color: var(--accent); }
+
+/* The intro line (an id selector) */
+#intro { font-size: 1.25rem; }
+
+/* Photos never get wider than the screen (no sideways scrolling) */
+img { max-width: 100%; height: auto; }
+
+/* Checklist 6: a centered container (max-width + margin: 0 auto) */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space);
+}
+
+/* Checklist 1: the nav bar (Flexbox) */
+header { background: var(--brand); }
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;   /* on a very narrow phone the button drops to a new line instead of overflowing */
+  gap: var(--space);
+}
+nav a { color: white; }
+
+/* Bootstrap's blue .btn-primary gets its colors from Bootstrap's own
+   variables (--bs-btn-...). I point those at my :root colors instead. */
+.btn-primary {
+  --bs-btn-bg: var(--brand);
+  --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-bg: var(--brand-dark);
+  --bs-btn-hover-border-color: var(--brand-dark);
+  --bs-btn-active-bg: var(--brand-dark);
+  --bs-btn-active-border-color: var(--brand-dark);
+}
+
+/* Each card gets a frame (a class selector and the box model) */
+.card {
+  background: var(--light);
+  color: var(--text);   /* Bootstrap's .card sets its own dark text color; this keeps dark mode readable */
+  border: 2px solid var(--accent);
+  padding: var(--space);
+}
+
+/* The table: smaller text and tighter cells on a phone so the three
+   columns fit; the @media block below gives them more room. */
+th, td { padding: 0.25rem 0.4rem; text-align: left; font-size: 0.85rem; }
+
+/* Assignment 7: the contact form is centered and not too wide to read */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Assignment 7: project cards. The picture fills the card's width.
+   aspect-ratio gives every picture the same box shape, and
+   object-fit: contain shrinks the whole picture to fit inside it
+   (nothing is cut off). margin-top: auto pushes the link to the
+   bottom of each card, so the links line up. */
+.project img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: var(--img-bg);
+  margin-bottom: var(--space);
+  border: 1px solid var(--accent);
+}
+.project a { margin-top: auto; }
+
+/* Checklist 5, part 1 (mobile-first): the phone layout comes first.
+   These rules work on every screen. 1fr makes one column, so the
+   cards and the projects stack. Checklist 4: display: grid. */
+.cards, .gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Checklist 5, part 2: this media query ADDS columns on wider screens.
+   min-width: 600px means "only when the screen is 600px or wider".
+   On a phone, the browser skips this whole block, so one column stays. */
+@media (min-width: 600px) {
+  /* Checklist 2: the three cards sit in one row (Flexbox + gap) */
+  .cards {
+    display: flex;
+    gap: 2rem;
+  }
+  /* normal text size and more room inside the table cells on wider screens */
+  th, td { padding: 0.25rem 1rem; font-size: 1rem; }
+  /* flex: 1 makes the three cards share the row equally */
+  .cards .card { flex: 1; }
+  /* Checklist 4: the four projects get two columns (a 2 x 2 grid) */
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Assignment 5: Bootstrap tightens heading and table spacing, so give the
+   sections room again. "main > h2" means only headings placed directly in main. */
+main > h2 { margin-top: 1.5rem; }
+table { margin-bottom: 1.5rem; }
+
+/* Feature 3: the short warning under the add form. It keeps its height
+   even when empty, so the page does not jump when a warning appears. */
+#hobby-message, .form-msg {
+  min-height: 1.6rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Long words in a new list item wrap instead of running off the screen */
+#list li { overflow-wrap: anywhere; }

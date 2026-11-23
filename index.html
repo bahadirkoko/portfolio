@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Assignment 4, row 3: the viewport meta tag. Every page needs it. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bahadir Kocabas</title>
+  <!-- Checklist 6: Bootstrap's link line (as in the Week 8 type-along).
+       It comes BEFORE styles.css, so my own rules win. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- This line connects this page to styles.css -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Assignment 4, row 1: the nav bar. The same nav sits on every page. -->
+  <header>
+    <nav class="container">
+      <a href="index.html">Home</a>
+      <a href="project.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <!-- Feature 1: the dark mode button. script.js listens for its click. -->
+      <button type="button" id="theme-btn" class="btn btn-outline-light btn-sm" aria-pressed="false">Dark mode</button>
+    </nav>
+  </header>
+
+  <!-- Checklist 6: container py-4 around the page (Bootstrap).
+       Assignment 4, row 6: class="container" keeps the page centered -->
+  <main class="container py-4">
+    <!-- Assignment 7, checklist 1: profile. My name, 2-3 sentences about me,
+         and the kind of work I want. -->
+    <h1>Bahadir Kocabas</h1>
+    <p id="intro">I am a Computer Information Systems senior at Texas State who likes turning messy data into something useful. I work with Python, SQL, PySpark, Databricks, and AWS. I am looking for an entry-level data engineering or cloud role where I can build reliable data pipelines.</p>
+    <!-- btn btn-primary is Bootstrap; my styles.css recolors it with --brand -->
+    <p><a href="project.html" class="btn btn-primary">See my projects</a></p>
+
+    <!-- Put your own photo in the images folder, then change src and alt -->
+    <figure>
+      <img src="images/headshot.png" alt="Headshot of Bahadir Kocabas" width="300">
+      <figcaption>Bahadir Kocabas</figcaption>
+    </figure>
+
+    <h2>Three things about me</h2>
+    <!-- Assignment 4, row 2: three cards. On wider screens they sit in one row. -->
+    <section class="cards">
+      <div class="card">
+        <h3>My major</h3>
+        <p>Computer Information Systems, because it mixes business fundamentals with computer systems, and that combination creates a lot of value today.</p>
+      </div>
+      <div class="card">
+        <h3>For fun</h3>
+        <p>Pickleball, playing and watching soccer, working out three to four times a week, and reading books.</p>
+      </div>
+      <div class="card">
+        <h3>My goal</h3>
+        <p>Keep learning cloud and data tools on my own, and build things that bring real value into people's lives.</p>
+      </div>
+    </section>
+
+    <h2>My skills</h2>
+    <table>
+      <tr><th>Skill</th><th>Level</th><th>Experience</th></tr>
+      <tr><td>Python</td><td>Intermediate</td><td>2 years</td></tr>
+      <tr><td>SQL</td><td>Intermediate</td><td>2 years</td></tr>
+      <tr><td>AWS (SDK and CLI)</td><td>Intermediate</td><td>1 year</td></tr>
+      <tr><td>PySpark</td><td>Intermediate</td><td>1 year</td></tr>
+      <tr><td>Databricks</td><td>Intermediate</td><td>1 year</td></tr>
+    </table>
+
+    <!-- Checklist 7: made it mine. The list sits on my own Home page,
+         under a heading I wrote.
+         Checklist 6: card card-body mb-3 (Bootstrap) around the list. -->
+    <section class="card card-body mb-3">
+      <h2>What I do outside of class</h2>
+
+      <!-- Feature 3: a form to add a new item. script.js listens for its submit event. -->
+      <form id="add-form" class="input-group mb-2">
+        <label for="hobby-input" class="visually-hidden">New item</label>
+        <input id="hobby-input" type="text" class="form-control" placeholder="Add something you do...">
+        <button type="submit" class="btn btn-success">Add</button>
+      </form>
+      <p id="hobby-message" aria-live="polite"></p>
+
+      <!-- Feature 2: a button that sorts the list A to Z. script.js listens for its click. -->
+      <div class="mb-3">
+        <button type="button" id="sort-btn" class="btn btn-secondary btn-sm">Sort A to Z</button>
+      </div>
+
+      <!-- Checklist 1: an empty list and an empty count line, each with an id.
+           script.js fills both of them in. -->
+      <ul id="list"></ul>
+      <p id="count"></p>
+    </section>
+
+    <h2>Links I like</h2>
+    <ul>
+      <li><a href="https://www.txst.edu" target="_blank" rel="noopener">Texas State University</a></li>
+      <li><a href="https://developer.mozilla.org" target="_blank" rel="noopener">MDN Web Docs</a></li>
+    </ul>
+  </main>
+
+  <footer class="container">
+    <p>&copy; 2026 Bahadir Kocabas</p>
+  </footer>
+
+  <!-- Checklist 1: script.js is linked at the END of body, so the list
+       and the count line already exist when the script runs. -->
+  <script src="script.js"></script>
+
+<!--
+Assignment 7:
+1. The design principle I fixed, and what I changed: Contrast. In dark mode, Bootstrap's .card class kept its own dark text color, so the card text was dark on a dark background and hard to read. I set .card to color: var(--text) so cards follow my dark mode colors, and I checked every text and background pair in WebAIM's Contrast Checker. All of them pass 4.5:1 in light and dark mode.
+2. The tools and AI I used: VS Code, Bootstrap 5.3.3 (CDN), the WebAIM Contrast Checker, Chrome DevTools (device toolbar at 375px and 1280px), GitHub Desktop, and Cloudflare Workers & Pages. I used Claude (AI) to explain concepts, check my code, and help write the contact form handler and the project descriptions. I reviewed and tested everything myself.
+-->
+</body>
+</html>

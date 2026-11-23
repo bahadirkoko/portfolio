@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Checklist 3: the viewport meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Bahadir Kocabas</title>
+  <!-- Bootstrap first, then my styles.css, so my rules win (same as every page) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Assignment 7, checklist 3: the same nav on every page -->
+  <header>
+    <nav class="container">
+      <a href="index.html">Home</a>
+      <a href="project.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <button type="button" id="theme-btn" class="btn btn-outline-light btn-sm" aria-pressed="false">Dark mode</button>
+    </nav>
+  </header>
+
+  <main class="container py-4">
+    <h1>Projects</h1>
+    <p>Data engineering and database projects I have built. Each card links to the code on GitHub.</p>
+
+    <!-- Assignment 7, checklist 2: showcase. Each project has a title, a
+         picture, 2 sentences (what it is + what I did), and a link.
+         class="gallery" is a grid: one column on a phone, two on wider screens. -->
+    <section class="gallery">
+
+      <!-- This project calls the YouTube Data API with a key. The picture is
+           the architecture diagram, and the key is NOT on this site or in the repo. -->
+      <article class="card project">
+        <img src="images/youtube-pipeline.png" alt="Architecture diagram: the YouTube Data API feeds a Lambda function, AWS Step Functions runs Glue jobs and a quality check, and the data moves through Bronze, Silver, and Gold S3 buckets to Athena.">
+        <h2>YouTube Trending Data Pipeline</h2>
+        <p>A serverless AWS pipeline that collects trending YouTube videos for 10 countries every day and turns them into analytics tables you can query with SQL in Athena. I built the Lambda and Glue (PySpark) jobs, a data quality gate with six checks, and the Step Functions workflow, all set up as code with Terraform.</p>
+        <a href="https://github.com/bahadirkoko/youtube-trending-pipeline" target="_blank" rel="noopener">View on GitHub</a>
+      </article>
+
+      <article class="card project">
+        <img src="images/novacart-pipeline.jpeg" alt="Pipeline diagram: JSON, SQLite, and CSV files flow into a Bronze layer, then a Silver layer, then a Gold star schema warehouse, with rows that fail validation sent to a Quarantine table.">
+        <h2>NovaCart ETL Pipeline</h2>
+        <p>A Python ETL pipeline that loads an online store's orders, customers, and products from CSV, JSON, and SQLite files into a star schema data warehouse. I built the Bronze, Silver, and Gold layers with schema validation, a quarantine table for bad rows, and SCD Type 2 history so past customer details are kept.</p>
+        <a href="https://github.com/bahadirkoko/novacart-etl-pipeline" target="_blank" rel="noopener">View on GitHub</a>
+      </article>
+
+      <article class="card project">
+        <img src="images/mwc3-erd.png" alt="Entity-relationship diagram with tables for store, employee, menu, menu item, recipe, product, and inventory, connected by crow's foot lines.">
+        <h2>Restaurant Franchise Database (1st Place)</h2>
+        <p>A database for a franchise restaurant chain that tracks its stores, employees, menus, recipes, and inventory, and it won 1st place at the MWC3 2026 Collegiate Database Design Competition. I designed the ERD in third normal form (3NF) and wrote the SQL Server schema, indexes, and sample data.</p>
+        <a href="https://github.com/bahadirkoko/mwc3databasedesigncomp" target="_blank" rel="noopener">View on GitHub</a>
+      </article>
+
+      <article class="card project">
+        <img src="images/medical-specialties.png" alt="Bar chart of notes per medical specialty, from 368 Cardiovascular and Pulmonary notes down to 10 Diets and Nutritions notes, showing how uneven the classes are.">
+        <h2>Medical Transcription Classifier</h2>
+        <p>An NLP project from my IBM Data Engineering internship that sorts medical transcription notes into their medical specialty. I compared three machine learning models (Logistic Regression won with about 70% accuracy) and built a semantic search engine with ChromaDB that finds similar notes.</p>
+        <a href="https://github.com/bahadirkoko/medical-transcription-classifier" target="_blank" rel="noopener">View on GitHub</a>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>&copy; 2026 Bahadir Kocabas</p>
+  </footer>
+
+  <!-- script.js runs the dark mode button on this page too -->
+  <script src="script.js"></script>
+</body>
+</html>
